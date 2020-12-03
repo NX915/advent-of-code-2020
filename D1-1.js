@@ -1,11 +1,8 @@
-const { getNumbers } = require('./helpers');
+const { getNumbers, sortNumbers } = require('./helpers');
 
-const findPair = data => {
-    console.log(data)
-    const numArr = [...data];
-
-    numArr.sort((a, b) => a - b);
-    console.log(numArr);
+const findPair = (data, target = 2020) => {
+    const numArr = sortNumbers(data);
+    // console.log(numArr);
 
     const counts = {
         sum: 0,
@@ -15,14 +12,13 @@ const findPair = data => {
     }
     let { sum, tailCount, headCount, cycle } = counts;
 
-    // while (cycle <= Math.ceil(numArr.length / 2)) {
-    while (headCount <= tailCount && sum !== 2020) {
+    while (headCount <= tailCount && sum !== target) {
         sum = numArr[headCount] + numArr[tailCount];
-        console.log(sum, cycle);
+        // console.log(sum, cycle);
 
-        if (sum === 2020) {
+        if (sum === target) {
             return numArr[headCount] * numArr[tailCount];
-        } else if (sum < 2020) {
+        } else if (sum < target) {
             headCount++;
         } else {
             tailCount--;
@@ -45,6 +41,7 @@ const repairReport = (file = '') => {
 module.exports = {
     repairReport,
     findPair,
+    getNumbers,
 };
 
 // repairReport('./D1.mock');

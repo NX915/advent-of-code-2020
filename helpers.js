@@ -15,7 +15,13 @@ const getNumbers = file => {
     });
 }
 
+const sortNumbers = arr => {
+    output = [...arr]
+    return output.sort((a, b) => a - b);
+}
+
 module.exports = {
     getFile,
-    getNumbers
+    getNumbers,
+    sortNumbers
 };
