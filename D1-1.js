@@ -1,19 +1,8 @@
-fs = require('fs');
-file = './D1.puzzle';
+const { getNumbers } = require('./helpers');
 
-const parseData = data => {
-    return data.trim().split(/\r?\n/).map(num => parseInt(num));
-}
-
-const repairReport = (input = `
-    1721
-    979
-    366
-    299
-    675
-    1456
-`) => {
-    const numArr = parseData(input);
+const findPair = data => {
+    console.log(data)
+    const numArr = [...data];
 
     numArr.sort((a, b) => a - b);
     console.log(numArr);
@@ -42,7 +31,21 @@ const repairReport = (input = `
         cycle++;
     }
 
-    return 'Combo Not Found!';
+    return null;
 }
 
-fs.readFile(file, 'utf8', (err, data) => console.log(repairReport(data)));
+const repairReport = (file = '') => {
+
+    getNumbers(file).then(data => {
+        console.log(findPair(data));
+    });
+    
+}
+
+module.exports = {
+    repairReport,
+    findPair,
+};
+
+// repairReport('./D1.mock');
+// repairReport('./D1.puzzle');
