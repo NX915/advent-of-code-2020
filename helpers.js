@@ -8,10 +8,14 @@ const getFile = file => {
     });
 }
 
+const getLines = stringData => {
+    return stringData.trim().split(/\r?\n/);
+}
+
 const getNumbers = file => {
     return new Promise((resolve, reject) => {
         getFile(file)
-            .then(data => resolve(data.trim().split(/\r?\n/).map(num => parseInt(num))));
+            .then(data => resolve(getLines(data).map(num => parseInt(num))));
     });
 }
 
@@ -22,6 +26,7 @@ const sortNumbers = arr => {
 
 module.exports = {
     getFile,
+    getLines,
     getNumbers,
     sortNumbers
 };
