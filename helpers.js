@@ -16,6 +16,8 @@ const getFileLines = file => {
     return getFile(file).then(data => getLines(data));
 }
 
+const splitByEmptyLine = data => data.split( "\r\n\r\n");
+
 const getNumbers = file => {
     return new Promise((resolve, reject) => {
         getFile(file)
@@ -36,6 +38,7 @@ module.exports = {
     getFile,
     getLines,
     getFileLines,
+    splitByEmptyLine,
     getNumbers,
     sortNumbers,
     multiplyAll
